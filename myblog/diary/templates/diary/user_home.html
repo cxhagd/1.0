@@ -1,0 +1,62 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+    <h1>您的主页</h1>
+
+    <!-- 日历导航按钮 -->
+    <div class="calendar-navigation">
+        <button onclick="changeMonth(-1)">上个月</button>
+        <button onclick="changeMonth(1)">下个月</button>
+    </div>
+
+    <!-- 日历表格 -->
+    <table class="calendar">
+        <thead>
+            <tr>
+                <th>周一</th>
+                <th>周二</th>
+                <th>周三</th>
+                <th>周四</th>
+                <th>周五</th>
+                <th>周六</th>
+                <th>周日</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in month_days|slice:"::7" %}
+            <tr>
+                {% for day in week %}
+                <td>
+                    {% if day > 0 %}
+                        {% if day in days_with_entries %}
+                            <a href="{% url 'diary_detail' year month day %}">{{ day }}</a>
+                        {% else %}
+                            {{ day }}
+                        {% endif %}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    function changeMonth(offset) {
+        let year = {{ year }};
+        let month = {{ month }} + offset;
+
+        if (month < 1) {
+            month = 12;
+            year--;
+        } else if (month > 12) {
+            month = 1;
+            year++;
+        }
+
+        window.location.href = `{% url 'calendar' %}${year}/${month}/`;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!-- diary/templates/diary/diary_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Diary Entry</title>
+</head>
+<body>
+    <h1>Create Diary Entry</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- diary/templates/registrations/login.html -->
+{% extends 'diary/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+
+
+    {% block content %}
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <a href="{% url 'register' %}">Register</a>
+    {% endblock %}
+</body>
+</html>

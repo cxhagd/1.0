@@ -1,0 +1,16 @@
+<!-- diary/templates/diary/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Diary</title>
+</head>
+<body>
+    <h1>Diary Entries</h1>
+    {% for entry in entries %}
+        <div>
+            <h2>{{ entry.title }}</h2>
+            <p>{{ entry.content }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
